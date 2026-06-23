@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>每日明信片</title>
+    <link rel="stylesheet" href="./styles.css?v=20260622-retro-collage-6" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="scrapbook-hero" aria-labelledby="today-date">
+        <div class="grain" aria-hidden="true"></div>
+        <div class="paper-base paper-base-a" aria-hidden="true"></div>
+        <div class="paper-base paper-base-b" aria-hidden="true"></div>
+        <div class="paper-base paper-base-c" aria-hidden="true"></div>
+
+        <header class="hero-date" id="today-date" aria-label="今天日期">
+          <span>2026</span>
+          <strong>06 22</strong>
+          <small>Monday</small>
+        </header>
+
+        <div class="hero-tools" aria-label="页面操作">
+          <button class="quiet-link" type="button" data-open-past aria-controls="past-collection">
+            查看过去
+          </button>
+          <button class="icon-tool" type="button" data-upload-button aria-label="上传图片">+</button>
+          <input class="visually-hidden" type="file" accept="image/*" multiple data-upload-input />
+          <button class="lucky-button" type="button" data-lucky-button>I'm feeling lucky</button>
+        </div>
+
+        <div class="upload-layer" data-upload-layer aria-live="polite"></div>
+
+        <div class="replace-panel" data-replace-panel hidden>
+          <label for="replace-search">输入一个主题</label>
+          <div class="replace-row">
+            <input id="replace-search" type="search" placeholder="雪山、海边、森林、东京夜晚" data-replace-input />
+            <button type="button" data-retry-button>换一组</button>
+            <button type="button" data-apply-button>确定</button>
+          </div>
+          <p class="replace-status" data-replace-status aria-live="polite"></p>
+        </div>
+
+        <div class="scrap-layer" data-collage-layer aria-label="今日拼贴背景"></div>
+
+        <section class="postcard-stage" aria-label="今日明信片">
+          <article class="postcard postcard-a" data-postcard="a" tabindex="0" aria-label="第一张明信片，点击翻面">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <div class="photo-frame photo-a" role="img" data-replaceable="postcard-front-a" data-search-hint="雪山" aria-label="风景明信片正面"></div>
+                <div class="postcard-front-meta">
+                  <span>风景面 A</span>
+                  <small>点击书写</small>
+                </div>
+              </div>
+              <div class="postcard-face postcard-back">
+                <div class="postcard-topline">
+                  <span>POSTCARD</span>
+                  <i></i>
+                </div>
+                <div class="postcard-writing">
+                  <label>
+                    今天想问你：
+                    <textarea rows="3">如果今天是一张照片，它会是什么颜色？</textarea>
+                  </label>
+                  <label>
+                    我的回答：
+                    <textarea rows="5">我想它会有一点蓝色，像窗边还没有完全暗下来的天。</textarea>
+                  </label>
+                </div>
+                <div class="postcard-address" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <button class="archive-stamp-trigger" type="button" data-archive-postcard="a" aria-label="盖邮戳并归档第一张明信片">
+              <span>PRESS HERE</span>
+            </button>
+            <span class="archive-imprint" aria-hidden="true">ARCHIVED<br />06.22</span>
+          </article>
+
+          <article class="postcard postcard-b" data-postcard="b" tabindex="0" aria-label="第二张明信片，点击翻面">
+            <div class="postcard-inner">
+              <div class="postcard-face postcard-front">
+                <div class="photo-frame photo-b" role="img" data-replaceable="postcard-front-b" data-search-hint="海边" aria-label="风景明信片正面"></div>
+                <div class="postcard-front-meta">
+                  <span>风景面 B</span>
+                  <small>点击书写</small>
+                </div>
+              </div>
+              <div class="postcard-face postcard-back">
+                <div class="postcard-topline">
+                  <span>POSTCARD</span>
+                  <i></i>
+                </div>
+                <div class="postcard-writing">
+                  <label>
+                    今天想问你：
+                    <textarea rows="3">有没有一个很小的瞬间，让今天变得不一样？</textarea>
+                  </label>
+                  <label>
+                    我的回答：
+                    <textarea rows="5">有。电梯门快关上的时候，突然想起要给你留一张今天的明信片。</textarea>
+                  </label>
+                </div>
+                <div class="postcard-address" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+            <button class="archive-stamp-trigger" type="button" data-archive-postcard="b" aria-label="盖邮戳并归档第二张明信片">
+              <span>PRESS HERE</span>
+            </button>
+            <span class="archive-imprint" aria-hidden="true">ARCHIVED<br />06.22</span>
+          </article>
+        </section>
+      </section>
+
+      <section class="past-collection" id="past-collection" data-past-section hidden>
+        <div class="past-heading">
+          <h2>查看过去</h2>
+          <p>像从桌面上抽出一张旧明信片。选中后再看日期和内容。</p>
+        </div>
+        <div class="collection-grid" data-collection-grid aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js?v=20260622-retro-collage-6"></script>
+  </body>
+</html>

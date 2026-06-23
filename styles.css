@@ -1,0 +1,1970 @@
+:root {
+  --paper: #e8e0c0;
+  --paper-lifted: #ede4cf;
+  --paper-cool: #d9d3c6;
+  --ink: #1f1a16;
+  --ink-soft: #4e463d;
+  --postal-red: #b91f1b;
+  --postal-blue: #276a8f;
+  --washed-olive: #6c754d;
+  --tape: #b98f52;
+  --shadow: rgba(31, 26, 22, 0.22);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Helvetica, Arial, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(115deg, rgba(39, 106, 143, 0.2) 0 18%, transparent 18% 100%),
+    radial-gradient(circle at 28% 18%, rgba(185, 31, 27, 0.06), transparent 24rem),
+    radial-gradient(circle at 82% 72%, rgba(39, 106, 143, 0.08), transparent 22rem),
+    var(--paper);
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.app-shell {
+  min-height: 100dvh;
+}
+
+.scrapbook-hero {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding: clamp(1rem, 2.2vw, 2rem);
+  isolation: isolate;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: radial-gradient(rgba(31, 26, 22, 0.32) 0.8px, transparent 0.8px);
+  background-size: 4px 4px;
+  mix-blend-mode: multiply;
+}
+
+.paper-base {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--paper-lifted);
+  box-shadow: 0 7px 8px rgba(31, 26, 22, 0.1);
+  filter: saturate(0.92);
+}
+
+.paper-base-a {
+  width: min(72vw, 740px);
+  height: min(70vh, 600px);
+  left: 13vw;
+  top: 7vh;
+  rotate: -2.2deg;
+  clip-path: polygon(0 3%, 97% 0, 100% 96%, 4% 100%);
+}
+
+.paper-base-b {
+  width: 30vw;
+  min-width: 240px;
+  height: 62vh;
+  right: 3vw;
+  top: 15vh;
+  rotate: 1.8deg;
+  background: #80c7d8;
+  clip-path: polygon(4% 0, 100% 3%, 94% 100%, 0 95%);
+}
+
+.paper-base-c {
+  width: 34vw;
+  min-width: 250px;
+  height: 26vh;
+  left: 4vw;
+  bottom: 6vh;
+  rotate: 2.4deg;
+  background: #d9c7a8;
+}
+
+.hero-date {
+  position: relative;
+  z-index: 14;
+  width: min-content;
+  color: var(--ink);
+  line-height: 0.86;
+  transform: rotate(-2deg);
+  text-transform: uppercase;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.hero-date span,
+.hero-date small {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+  color: var(--ink-soft);
+}
+
+.hero-date strong {
+  display: block;
+  margin: 0.1rem 0;
+  font-family: "Arial Black", Helvetica, Arial, sans-serif;
+  font-size: clamp(3.8rem, 11vw, 8.8rem);
+  letter-spacing: 0;
+}
+
+.hero-tools {
+  position: absolute;
+  z-index: 15;
+  top: clamp(1rem, 2vw, 2rem);
+  right: clamp(1rem, 2vw, 2rem);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  transform: rotate(-1deg);
+}
+
+.quiet-link,
+.lucky-button,
+.icon-tool,
+.replace-row button {
+  border: 0;
+  background: #f3eddc;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(31, 26, 22, 0.16);
+  transition: transform 180ms var(--ease), background 180ms var(--ease), color 180ms var(--ease);
+}
+
+.quiet-link,
+.lucky-button,
+.replace-row button {
+  padding: 0.55rem 0.78rem;
+  border-radius: 0;
+  font-size: 0.86rem;
+  clip-path: polygon(2% 0, 100% 5%, 96% 100%, 0 92%);
+}
+
+.icon-tool {
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  line-height: 1;
+  background: #efe4c8;
+}
+
+.quiet-link:hover,
+.lucky-button:hover,
+.icon-tool:hover,
+.replace-row button:hover {
+  background: #fff5d9;
+  transform: translateY(-1px);
+}
+
+.lucky-active .lucky-button {
+  background: var(--postal-red);
+  color: var(--postal-red);
+  color: #fff8e8;
+}
+
+.upload-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.upload-placeholder,
+.uploaded-piece {
+  position: absolute;
+  width: min(20vw, 240px);
+  aspect-ratio: 4 / 3;
+  padding: 7px;
+  border: 0;
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.14), rgba(31, 26, 22, 0.08)),
+    linear-gradient(158deg, #9fc5c5 0 48%, #d9cdb0 49% 100%);
+  box-shadow: 0 9px 8px rgba(31, 26, 22, 0.18);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 180ms var(--ease), filter 180ms var(--ease);
+}
+
+.upload-placeholder {
+  opacity: 0.92;
+}
+
+.upload-slot-1 {
+  left: 9vw;
+  top: 53vh;
+  transform: rotate(-3deg);
+}
+
+.upload-slot-2 {
+  left: 35vw;
+  top: 20vh;
+  width: min(18vw, 220px);
+  transform: rotate(2.5deg);
+}
+
+.upload-slot-3 {
+  right: 7vw;
+  bottom: 11vh;
+  width: min(17vw, 210px);
+  transform: rotate(-5deg);
+}
+
+.uploaded-piece {
+  left: 9vw;
+  top: 53vh;
+  transform: rotate(-3deg);
+  opacity: 0;
+  animation: settle-in 380ms var(--ease) forwards;
+}
+
+.upload-placeholder img,
+.uploaded-piece img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.74) contrast(0.94) sepia(0.12);
+}
+
+.upload-placeholder.has-replacement-image,
+.uploaded-piece.has-replacement-image {
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.1), rgba(31, 26, 22, 0.08)),
+    var(--replacement-image) center / cover,
+    linear-gradient(158deg, #9fc5c5 0 48%, #d9cdb0 49% 100%);
+}
+
+.upload-placeholder.has-user-upload {
+  background: #f3ebd6;
+}
+
+.upload-placeholder.has-replacement-image img,
+.uploaded-piece.has-replacement-image img {
+  opacity: 0;
+}
+
+.replace-panel {
+  position: absolute;
+  z-index: 25;
+  left: 50%;
+  bottom: clamp(1rem, 4vh, 2.4rem);
+  width: min(92vw, 430px);
+  padding: 0.85rem;
+  background: #efe6ce;
+  border: 1px solid rgba(31, 26, 22, 0.38);
+  box-shadow: 0 8px 8px rgba(31, 26, 22, 0.14);
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.replace-panel label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+}
+
+.replace-row {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.replace-row input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid rgba(31, 26, 22, 0.35);
+  border-radius: 2px;
+  background: #f8f0d9;
+  color: var(--ink);
+  padding: 0.55rem 0.65rem;
+}
+
+.replace-status {
+  min-height: 1.2rem;
+  margin: 0.55rem 0 0;
+  color: var(--ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.72rem;
+}
+
+.replace-panel.is-searching {
+  cursor: wait;
+}
+
+.replace-panel.is-searching .replace-row button {
+  opacity: 0.56;
+  cursor: progress;
+}
+
+.scrap-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.retro-collage-element {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: var(--z);
+  width: clamp(68px, var(--w), 34vw);
+  aspect-ratio: var(--ratio);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  opacity: var(--o);
+  background: #efe4cd;
+  transform: translate(-50%, -50%) rotate(var(--r)) scale(var(--s));
+  transform-origin: center;
+  cursor: default;
+  pointer-events: auto;
+  box-shadow:
+    0 calc(10px * var(--shadow)) calc(8px * var(--shadow)) rgba(36, 30, 23, 0.2),
+    0 1px 0 rgba(255, 250, 233, 0.55) inset,
+    0 -2px 0 rgba(58, 47, 35, 0.1) inset;
+  filter: saturate(0.82) contrast(0.92) sepia(0.1);
+  mix-blend-mode: var(--blend);
+  isolation: isolate;
+  transition:
+    transform 240ms var(--ease),
+    filter 240ms var(--ease),
+    opacity 240ms var(--ease);
+}
+
+.retro-collage-element::before,
+.retro-collage-element::after,
+.retro-collage-content::before,
+.retro-collage-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.retro-collage-element::before {
+  z-index: 5;
+  opacity: 0.3;
+  background:
+    radial-gradient(rgba(56, 44, 31, 0.24) 0.8px, transparent 0.9px),
+    linear-gradient(105deg, rgba(255, 251, 235, 0.28), transparent 48%, rgba(67, 54, 40, 0.08));
+  background-size: 5px 5px, 100% 100%;
+  mix-blend-mode: multiply;
+}
+
+.retro-collage-element::after {
+  z-index: -1;
+  transform: translate(3px, 4px);
+  background: rgba(58, 47, 35, 0.16);
+  filter: blur(2px);
+}
+
+.retro-collage-content {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  background: #efe4cd;
+}
+
+.retro-collage-content::after {
+  opacity: 0.42;
+  background:
+    repeating-linear-gradient(86deg, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 11px),
+    radial-gradient(circle at 16% 20%, rgba(255, 252, 235, 0.24), transparent 30%),
+    radial-gradient(circle at 80% 74%, rgba(45, 35, 24, 0.14), transparent 32%);
+  mix-blend-mode: soft-light;
+}
+
+.retro-collage-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.68) contrast(0.9) sepia(0.18) brightness(1.02);
+}
+
+.shape-photo-cutout,
+.shape-deckled-edge {
+  padding: 8px;
+  background:
+    linear-gradient(135deg, #fbf5e8, #e7dcc4),
+    #f7edd7;
+}
+
+.shape-photo-cutout .retro-collage-content,
+.shape-deckled-edge .retro-collage-content {
+  inset: 8px;
+}
+
+.shape-photo-cutout {
+  clip-path: polygon(1% 2%, 98% 0, 100% 91%, 55% 94%, 50% 100%, 44% 94%, 3% 96%);
+}
+
+.shape-hand-cut {
+  clip-path: polygon(4% 1%, 96% 5%, 100% 89%, 84% 100%, 11% 96%, 0 18%);
+}
+
+.shape-torn-paper,
+.shape-paper-scrap {
+  clip-path: polygon(2% 0, 100% 4%, 96% 96%, 62% 100%, 54% 96%, 42% 100%, 0 94%);
+}
+
+.shape-deckled-edge {
+  clip-path: polygon(3% 0, 98% 2%, 100% 12%, 97% 16%, 100% 24%, 96% 31%, 100% 41%, 96% 49%, 100% 59%, 97% 67%, 100% 79%, 96% 91%, 98% 100%, 5% 98%, 0 91%, 3% 80%, 0 68%, 3% 56%, 0 45%, 3% 35%, 0 24%, 3% 14%);
+}
+
+.shape-stamp-edge {
+  border: 1px dashed rgba(58, 47, 35, 0.36);
+  background:
+    radial-gradient(circle at 0 0, transparent 0 7px, #efe4cd 7.6px),
+    linear-gradient(135deg, #f5ecd8, #dacdaf);
+}
+
+.shape-tape {
+  background: transparent;
+  box-shadow: 0 5px 5px rgba(36, 30, 23, 0.12);
+  filter: saturate(0.82) contrast(0.94);
+}
+
+.shape-tape::before {
+  opacity: 0.6;
+  background:
+    radial-gradient(rgba(92, 68, 20, 0.28) 0.7px, transparent 0.9px),
+    linear-gradient(90deg, rgba(255, 245, 167, 0.62), rgba(214, 157, 31, 0.38), rgba(255, 245, 167, 0.48));
+  background-size: 4px 4px, 100% 100%;
+}
+
+.shape-tape .retro-collage-content {
+  clip-path: polygon(6% 0, 100% 8%, 94% 100%, 0 91%);
+  background:
+    linear-gradient(90deg, rgba(255, 244, 156, 0.48), rgba(222, 178, 52, 0.34)),
+    repeating-linear-gradient(94deg, transparent 0 8px, rgba(255, 255, 255, 0.22) 9px 10px);
+}
+
+.tone-blue.shape-tape .retro-collage-content {
+  background:
+    linear-gradient(90deg, rgba(80, 157, 184, 0.6), rgba(35, 98, 124, 0.46)),
+    repeating-linear-gradient(94deg, transparent 0 8px, rgba(255, 255, 255, 0.18) 9px 10px);
+}
+
+.tone-cream.shape-tape .retro-collage-content {
+  background:
+    linear-gradient(90deg, rgba(245, 232, 195, 0.62), rgba(213, 190, 142, 0.42)),
+    repeating-linear-gradient(94deg, transparent 0 8px, rgba(255, 255, 255, 0.18) 9px 10px);
+}
+
+.render-procedural-photo .retro-collage-content,
+.render-uploaded-photo .retro-collage-content {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-a) 62%, #f6e7c9), #e3c18d 52%, var(--accent-c));
+}
+
+.generated-photo-sky,
+.generated-photo-land,
+.generated-photo-detail,
+.generated-paper-lines,
+.generated-paper-mark,
+.generated-tape-fibers,
+.generated-postmark-ring,
+.generated-postmark-lines,
+.generated-postmark-label,
+.generated-label-text,
+.generated-ephemera-lines,
+.generated-scribble-line {
+  position: absolute;
+  display: block;
+}
+
+.generated-photo-sky {
+  inset: 0 0 42%;
+  background:
+    radial-gradient(circle at 72% 24%, rgba(255, 249, 222, 0.34), transparent 17%),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-a) 74%, #f3e4c6), rgba(235, 211, 162, 0.88));
+}
+
+.generated-photo-land {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 58%;
+  background:
+    linear-gradient(160deg, transparent 0 36%, rgba(33, 28, 24, 0.52) 37% 50%, transparent 51%),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-b) 68%, #dbc391), color-mix(in srgb, var(--accent-c) 78%, #3b2f27));
+  clip-path: polygon(0 42%, 18% 24%, 34% 38%, 52% 13%, 73% 34%, 100% 22%, 100% 100%, 0 100%);
+}
+
+.generated-photo-detail {
+  left: 10%;
+  top: 44%;
+  width: 72%;
+  height: 4px;
+  background: rgba(255, 250, 230, 0.48);
+  box-shadow:
+    18px 18px 0 rgba(255, 250, 230, 0.25),
+    84px 26px 0 rgba(255, 250, 230, 0.18),
+    118px -12px 0 rgba(31, 26, 22, 0.18);
+}
+
+.retro-collage-content[data-variant="sea"] .generated-photo-land {
+  height: 55%;
+  clip-path: polygon(0 26%, 100% 30%, 100% 100%, 0 100%);
+  background:
+    repeating-linear-gradient(178deg, rgba(255, 255, 255, 0.32) 0 2px, transparent 3px 13px),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-a) 70%, #dce4d2), color-mix(in srgb, var(--accent-c) 72%, #243036));
+}
+
+.retro-collage-content[data-variant="forest"] .generated-photo-detail {
+  left: 14%;
+  top: 6%;
+  width: 5px;
+  height: 88%;
+  background: rgba(31, 26, 22, 0.5);
+  box-shadow:
+    44px 0 0 rgba(31, 26, 22, 0.42),
+    88px 0 0 rgba(31, 26, 22, 0.36),
+    132px 0 0 rgba(31, 26, 22, 0.48);
+}
+
+.retro-collage-content[data-variant="city"] .generated-photo-detail {
+  inset: 14% 10%;
+  width: auto;
+  height: auto;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 238, 183, 0.2) 0 12px, transparent 13px 34px),
+    repeating-linear-gradient(0deg, rgba(255, 238, 183, 0.22) 0 10px, transparent 11px 30px);
+  box-shadow: none;
+}
+
+.retro-collage-content[data-variant="dream"] .generated-photo-land {
+  clip-path: polygon(0 70%, 38% 34%, 61% 52%, 100% 26%, 100% 100%, 0 100%);
+  background:
+    radial-gradient(circle at 72% 12%, rgba(246, 208, 112, 0.52), transparent 18%),
+    linear-gradient(135deg, #7fb9ca, #e4b283 64%, #ba4d3d);
+}
+
+.render-paper-scrap .retro-collage-content {
+  background:
+    linear-gradient(90deg, rgba(54, 43, 31, 0.08) 1px, transparent 1px),
+    repeating-linear-gradient(176deg, transparent 0 21px, rgba(58, 75, 69, 0.18) 22px 23px),
+    #efe4ce;
+  background-size: 28px 100%, 100% 100%, auto;
+}
+
+.tone-map-blue .retro-collage-content,
+.tone-cyan .retro-collage-content {
+  background:
+    linear-gradient(90deg, rgba(245, 239, 213, 0.24) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, transparent 0 22px, rgba(40, 94, 113, 0.18) 23px 24px),
+    #8fc8d6;
+}
+
+.tone-kraft .retro-collage-content {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 247, 210, 0.28), transparent 24%),
+    repeating-linear-gradient(96deg, rgba(85, 61, 37, 0.08) 0 1px, transparent 1px 8px),
+    #c5a879;
+}
+
+.tone-receipt .retro-collage-content {
+  background:
+    repeating-linear-gradient(0deg, transparent 0 18px, rgba(37, 52, 79, 0.2) 19px 20px),
+    repeating-linear-gradient(90deg, transparent 0 28px, rgba(37, 52, 79, 0.16) 29px 30px),
+    #e9dfc7;
+}
+
+.generated-paper-mark {
+  right: 12%;
+  top: 12%;
+  font-family: "Arial Black", Helvetica, Arial, sans-serif;
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  color: rgba(31, 26, 22, 0.65);
+}
+
+.render-postmark .retro-collage-content,
+.render-stamp-like .retro-collage-content,
+.render-sticker-icon .retro-collage-content {
+  display: grid;
+  place-items: center;
+  background: rgba(244, 232, 205, 0.72);
+  color: color-mix(in srgb, var(--accent-c) 76%, var(--postal-red));
+  font-family: "Courier New", Courier, monospace;
+  mix-blend-mode: multiply;
+}
+
+.generated-postmark-ring {
+  inset: 11%;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.62;
+  filter: blur(0.35px);
+}
+
+.generated-postmark-lines {
+  right: 2%;
+  top: 36%;
+  width: 45%;
+  height: 26%;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  opacity: 0.42;
+}
+
+.generated-postmark-lines::before,
+.generated-postmark-lines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 2px solid currentColor;
+}
+
+.generated-postmark-lines::before {
+  top: 34%;
+}
+
+.generated-postmark-lines::after {
+  top: 66%;
+}
+
+.generated-postmark-label,
+.generated-label-text {
+  position: relative;
+  z-index: 2;
+  max-width: 80%;
+  text-align: center;
+  font-size: clamp(0.62rem, 1.4vw, 0.9rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  opacity: 0.74;
+  filter: blur(0.2px);
+}
+
+.render-botanical-ephemera .retro-collage-content,
+.render-scribble .retro-collage-content {
+  background: transparent;
+  overflow: visible;
+}
+
+.generated-ephemera-lines {
+  inset: 12%;
+  color: var(--accent-c);
+  opacity: 0.72;
+  background:
+    radial-gradient(ellipse at 18% 70%, transparent 0 18%, currentColor 19% 21%, transparent 22%),
+    radial-gradient(ellipse at 48% 52%, transparent 0 18%, currentColor 19% 21%, transparent 22%),
+    radial-gradient(ellipse at 78% 70%, transparent 0 18%, currentColor 19% 21%, transparent 22%);
+}
+
+.retro-collage-content[data-variant="mountain"] .generated-ephemera-lines {
+  clip-path: polygon(0 74%, 16% 40%, 32% 66%, 52% 22%, 76% 70%, 100% 38%, 100% 100%, 0 100%);
+  background: color-mix(in srgb, var(--accent-c) 70%, #f4efe1);
+}
+
+.retro-collage-content[data-variant="waves"] .generated-ephemera-lines {
+  background:
+    repeating-radial-gradient(ellipse at 20% 50%, transparent 0 12px, currentColor 13px 15px, transparent 16px 32px);
+}
+
+.retro-collage-content[data-variant="moon-window"] .generated-ephemera-lines {
+  background:
+    radial-gradient(circle at 72% 24%, rgba(244, 232, 205, 0.86) 0 17%, transparent 18%),
+    repeating-linear-gradient(90deg, currentColor 0 2px, transparent 3px 22px),
+    repeating-linear-gradient(0deg, transparent 0 20px, currentColor 21px 22px);
+}
+
+.generated-scribble-line {
+  inset: 14%;
+  opacity: 0.7;
+  background:
+    radial-gradient(ellipse at 25% 45%, transparent 0 18%, rgba(31, 26, 22, 0.64) 19% 22%, transparent 23%),
+    radial-gradient(ellipse at 48% 50%, transparent 0 18%, rgba(31, 26, 22, 0.52) 19% 22%, transparent 23%),
+    radial-gradient(ellipse at 70% 46%, transparent 0 18%, rgba(31, 26, 22, 0.58) 19% 22%, transparent 23%);
+}
+
+.retro-collage-content[data-variant="trees"] .generated-scribble-line {
+  background:
+    linear-gradient(70deg, transparent 46%, #255d9a 47% 49%, transparent 50%),
+    linear-gradient(110deg, transparent 46%, #255d9a 47% 49%, transparent 50%),
+    repeating-linear-gradient(90deg, transparent 0 24px, #255d9a 25px 27px, transparent 28px 48px);
+}
+
+.lucky-active .retro-collage-element[data-replaceable] {
+  outline: 1px dashed rgba(185, 31, 27, 0.7);
+  outline-offset: 5px;
+}
+
+.retro-collage-element:focus-visible {
+  outline: 3px solid rgba(39, 106, 143, 0.72);
+  outline-offset: 6px;
+}
+
+.scrap {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  pointer-events: auto;
+  cursor: default;
+  background: transparent;
+}
+
+.lucky-active .scrap[data-replaceable],
+.lucky-active .upload-placeholder[data-replaceable],
+.lucky-active .photo-frame[data-replaceable] {
+  cursor: pointer;
+  outline: 1px dashed rgba(185, 31, 27, 0.82);
+  outline-offset: 5px;
+}
+
+.scrap.is-selected,
+.upload-placeholder.is-selected,
+.photo-frame.is-selected {
+  outline: 2px solid var(--postal-red);
+  outline-offset: 7px;
+}
+
+.photo-shard,
+.paper-shard,
+.type-shard,
+.stamp-shard,
+.strip-shard,
+.color-shard {
+  box-shadow: 0 8px 8px rgba(31, 26, 22, 0.18);
+  transition: transform 180ms var(--ease), filter 180ms var(--ease);
+}
+
+.photo-shard::before,
+.paper-shard::before,
+.type-shard::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 250, 240, 0.72);
+  mix-blend-mode: screen;
+}
+
+.photo-shard-a {
+  width: min(23vw, 285px);
+  aspect-ratio: 4 / 5;
+  left: 12vw;
+  top: 22vh;
+  rotate: -5deg;
+  padding: 9px;
+  background:
+    radial-gradient(circle at 64% 42%, rgba(31, 26, 22, 0.52) 0 11%, transparent 12%),
+    linear-gradient(153deg, transparent 0 42%, rgba(31, 26, 22, 0.62) 43% 58%, transparent 59%),
+    linear-gradient(170deg, #a8c8c0 0 36%, #e6e0c9 37% 100%);
+  filter: grayscale(0.22) saturate(0.72) contrast(0.96);
+  clip-path: polygon(0 3%, 96% 0, 100% 92%, 56% 97%, 49% 100%, 42% 96%, 3% 94%);
+}
+
+.photo-shard-b {
+  width: min(24vw, 315px);
+  aspect-ratio: 1.85 / 1;
+  left: 43vw;
+  top: 10vh;
+  rotate: -1.4deg;
+  padding: 8px;
+  background:
+    radial-gradient(circle at 22% 48%, rgba(31, 26, 22, 0.26) 0 7%, transparent 8%),
+    linear-gradient(178deg, #8bc8d8 0 58%, #d9d2bd 59% 100%);
+  filter: saturate(0.66) contrast(0.94) sepia(0.08);
+  clip-path: polygon(0 8%, 100% 0, 95% 87%, 61% 91%, 54% 100%, 45% 91%, 0 96%);
+}
+
+.paper-shard-a {
+  width: min(24vw, 300px);
+  aspect-ratio: 0.78 / 1;
+  right: 10vw;
+  top: 34vh;
+  rotate: 3deg;
+  background:
+    linear-gradient(90deg, rgba(31, 26, 22, 0.08) 1px, transparent 1px),
+    repeating-linear-gradient(172deg, transparent 0 22px, rgba(32, 49, 47, 0.22) 23px 24px),
+    #efe5cf;
+  background-size: 28px 100%, 100% 100%, auto;
+  clip-path: polygon(5% 0, 100% 3%, 93% 100%, 10% 96%, 0 57%);
+}
+
+.paper-shard-a::after {
+  content: "dear today";
+  position: absolute;
+  left: 17%;
+  top: 22%;
+  width: 55%;
+  color: rgba(32, 49, 47, 0.7);
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: clamp(0.9rem, 1.5vw, 1.18rem);
+  line-height: 1.5;
+  transform: rotate(-8deg);
+}
+
+.type-shard-a {
+  left: 7.5vw;
+  top: 41vh;
+  width: min(9vw, 112px);
+  aspect-ratio: 0.56 / 1;
+  rotate: -6deg;
+  display: grid;
+  place-items: center;
+  background: #fbf7ee;
+  color: #11100e;
+  font-family: "Arial Black", Helvetica, Arial, sans-serif;
+  font-size: clamp(4rem, 9vw, 7.5rem);
+  line-height: 1;
+}
+
+.stamp-shard {
+  right: 16vw;
+  top: 22vh;
+  width: 8.2rem;
+  height: 2.25rem;
+  rotate: 3deg;
+  background: var(--postal-red);
+  color: #fff8e8;
+  font-family: "Arial Black", Helvetica, Arial, sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0;
+  clip-path: polygon(0 6%, 100% 0, 96% 100%, 4% 92%);
+}
+
+.strip-shard-a {
+  left: 18vw;
+  bottom: 16vh;
+  width: 14rem;
+  height: 1.1rem;
+  rotate: -2deg;
+  background: var(--postal-blue);
+  box-shadow: 0 4px 5px rgba(31, 26, 22, 0.13);
+}
+
+.color-shard-a {
+  width: min(16vw, 220px);
+  height: min(15vh, 140px);
+  left: 6vw;
+  top: 51vh;
+  rotate: 1deg;
+  background: #11100e;
+  clip-path: polygon(0 7%, 100% 0, 96% 82%, 14% 100%);
+  box-shadow: 0 8px 7px rgba(31, 26, 22, 0.18);
+}
+
+.circle-shard {
+  right: 23vw;
+  bottom: 22vh;
+  width: min(11vw, 130px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(31, 26, 22, 0.84);
+  mix-blend-mode: multiply;
+}
+
+.tape-piece {
+  width: 4.6rem;
+  height: 1.65rem;
+  border: 0;
+  background: rgba(236, 196, 39, 0.72);
+  box-shadow: 0 3px 4px rgba(31, 26, 22, 0.12);
+  clip-path: polygon(6% 0, 100% 7%, 94% 100%, 0 91%);
+}
+
+.tape-one {
+  left: 54vw;
+  top: 28vh;
+  rotate: -7deg;
+}
+
+.tape-two {
+  right: 18vw;
+  top: 45vh;
+  rotate: 8deg;
+}
+
+.black-paper {
+  width: min(24vw, 340px);
+  height: min(17vh, 160px);
+  left: 7vw;
+  top: 58vh;
+  rotate: -2deg;
+  background: #11100e;
+  clip-path: polygon(0 7%, 100% 0, 96% 82%, 14% 100%);
+  z-index: -1;
+}
+
+.scrap.has-replacement-image,
+.photo-frame.has-replacement-image,
+.image-piece.has-replacement-image,
+.upload-placeholder.has-replacement-image,
+.uploaded-piece.has-replacement-image {
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.1), rgba(31, 26, 22, 0.08)),
+    var(--replacement-image) center / cover,
+    linear-gradient(158deg, #a9c7c0 0 48%, #d7ceb7 49% 100%);
+  filter: saturate(0.72) contrast(0.95) sepia(0.1);
+}
+
+.scrap.has-replacement-image::after,
+.photo-frame.has-replacement-image::after,
+.image-piece.has-replacement-image::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(255, 250, 240, 0.72);
+  pointer-events: none;
+}
+
+.candidate-writing {
+  background:
+    repeating-linear-gradient(176deg, transparent 0 20px, rgba(32, 49, 47, 0.24) 21px 22px),
+    #efe5cf;
+  color: rgba(32, 49, 47, 0.72);
+  display: grid;
+  place-items: center;
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+}
+
+.candidate-type {
+  background: #fbf7ee;
+  color: #11100e;
+  display: grid;
+  place-items: center;
+  font-family: "Arial Black", Helvetica, Arial, sans-serif;
+}
+
+.candidate-paper {
+  background: #7ec6d5;
+}
+
+.candidate-landscape {
+  background:
+    radial-gradient(circle at 70% 36%, rgba(31, 26, 22, 0.36) 0 11%, transparent 12%),
+    linear-gradient(155deg, transparent 0 44%, rgba(31, 26, 22, 0.48) 45% 60%, transparent 61%),
+    linear-gradient(180deg, #a9c7c0 0 54%, #d8d0b8 55% 100%);
+}
+
+.candidate-water {
+  background:
+    radial-gradient(circle at 28% 46%, rgba(31, 26, 22, 0.22) 0 7%, transparent 8%),
+    linear-gradient(176deg, #8bc8d8 0 56%, #ead7bb 57% 100%);
+}
+
+.postcard-stage {
+  position: relative;
+  z-index: 10;
+  min-height: 66vh;
+  display: grid;
+  grid-template-columns: minmax(280px, 430px) minmax(280px, 430px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  margin-top: clamp(1rem, 2vh, 2rem);
+  pointer-events: none;
+}
+
+.postcard {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.46 / 1;
+  perspective: 1400px;
+  pointer-events: auto;
+  outline: none;
+}
+
+.postcard-a {
+  transform: rotate(-3.5deg) translateY(1.6rem);
+}
+
+.postcard-b {
+  transform: rotate(2.2deg) translateY(-0.4rem);
+}
+
+.postcard:focus-visible .postcard-inner {
+  outline: 3px solid rgba(39, 106, 143, 0.62);
+  outline-offset: 7px;
+}
+
+.postcard-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 560ms var(--ease);
+  clip-path: polygon(1% 0, 99% 1%, 100% 95%, 96% 100%, 3% 98%, 0 4%);
+  box-shadow:
+    0 15px 12px rgba(31, 26, 22, 0.24),
+    0 1px 0 rgba(255, 250, 230, 0.58) inset,
+    0 -2px 0 rgba(58, 47, 35, 0.12) inset;
+}
+
+.postcard.is-flipped .postcard-inner {
+  transform: rotateY(180deg);
+}
+
+.postcard-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(139, 95, 58, 0.12), transparent 18%),
+    radial-gradient(circle at 84% 72%, rgba(39, 106, 143, 0.08), transparent 20%),
+    repeating-linear-gradient(94deg, rgba(70, 53, 35, 0.05) 0 1px, transparent 1px 8px),
+    #efe4cd;
+  border: 1px solid rgba(31, 26, 22, 0.28);
+}
+
+.postcard-face::before,
+.postcard-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.postcard-face::before {
+  opacity: 0.28;
+  background-image: radial-gradient(rgba(31, 26, 22, 0.24) 0.8px, transparent 0.9px);
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
+  z-index: 5;
+}
+
+.postcard-face::after {
+  border: 8px solid rgba(255, 250, 232, 0.42);
+  box-shadow:
+    inset 0 0 22px rgba(64, 47, 32, 0.16),
+    inset 0 0 0 1px rgba(31, 26, 22, 0.16);
+  z-index: 4;
+}
+
+.postcard-front {
+  padding: 0.7rem;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 229, 0.38), rgba(68, 55, 42, 0.1)),
+    #eadcc1;
+}
+
+.photo-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, var(--accent-a), #dec184 54%, var(--accent-c));
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.74) contrast(0.93) sepia(0.12);
+}
+
+.photo-frame::before,
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.photo-frame::before {
+  background:
+    radial-gradient(circle at 72% 28%, rgba(255, 249, 225, 0.35), transparent 16%),
+    linear-gradient(160deg, transparent 0 42%, rgba(31, 26, 22, 0.46) 43% 58%, transparent 59%);
+  mix-blend-mode: soft-light;
+}
+
+.photo-frame::after {
+  border: 1px solid rgba(255, 250, 230, 0.58);
+  box-shadow: inset 0 0 36px rgba(31, 26, 22, 0.18);
+}
+
+.photo-a {
+  background:
+    radial-gradient(circle at 72% 34%, rgba(31, 26, 22, 0.34) 0 11%, transparent 12%),
+    linear-gradient(155deg, transparent 0 45%, rgba(31, 26, 22, 0.46) 46% 62%, transparent 63%),
+    linear-gradient(180deg, #a9c7c0 0 54%, #d8d0b8 55% 100%);
+}
+
+.photo-b {
+  background:
+    radial-gradient(circle at 34% 55%, rgba(31, 26, 22, 0.28) 0 8%, transparent 9%),
+    linear-gradient(175deg, #8bc8d8 0 52%, #f0ddbc 53% 100%);
+}
+
+.photo-frame[data-photo-variant="mountain"] {
+  background:
+    linear-gradient(162deg, transparent 0 42%, rgba(28, 25, 22, 0.58) 43% 59%, transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-a) 68%, #e5decb) 0 54%, #d7c095 55% 100%);
+}
+
+.photo-frame[data-photo-variant="sea"] {
+  background:
+    repeating-linear-gradient(178deg, rgba(255, 250, 230, 0.32) 0 2px, transparent 3px 14px),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-a) 74%, #dce2cf) 0 55%, color-mix(in srgb, var(--accent-c) 70%, #24333a) 56% 100%);
+}
+
+.photo-frame[data-photo-variant="forest"] {
+  background:
+    repeating-linear-gradient(90deg, rgba(31, 26, 22, 0.44) 0 5px, transparent 6px 42px),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-a) 70%, #cfe0c0), color-mix(in srgb, var(--accent-c) 72%, #253020));
+}
+
+.photo-frame[data-photo-variant="city"] {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 235, 166, 0.2) 0 12px, transparent 13px 36px),
+    repeating-linear-gradient(0deg, transparent 0 20px, rgba(255, 235, 166, 0.18) 21px 22px),
+    linear-gradient(180deg, #263550, #151b27);
+}
+
+.photo-frame[data-photo-variant="dream"] {
+  background:
+    radial-gradient(circle at 72% 16%, rgba(246, 209, 104, 0.48), transparent 16%),
+    linear-gradient(135deg, #7bbbc8, #e6b280 64%, #b84e3d);
+}
+
+.postcard-front-meta {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.9rem;
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.25rem 0.4rem;
+  background: rgba(237, 228, 207, 0.78);
+  font-family: "Courier New", Courier, monospace;
+  color: var(--ink);
+}
+
+.postcard-front-meta span {
+  font-size: 0.72rem;
+}
+
+.postcard-front-meta small {
+  font-size: 0.68rem;
+}
+
+.postcard-back {
+  position: absolute;
+  transform: rotateY(180deg);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  padding: clamp(0.8rem, 2vw, 1.2rem);
+  background:
+    radial-gradient(circle at 18% 78%, rgba(136, 88, 48, 0.12), transparent 18%),
+    linear-gradient(90deg, rgba(39, 106, 143, 0.08) 1px, transparent 1px),
+    repeating-linear-gradient(92deg, rgba(75, 55, 35, 0.055) 0 1px, transparent 1px 9px),
+    #efe4cb;
+  background-size: auto, 32px 100%, auto, auto;
+}
+
+.archive-stamp-trigger {
+  position: absolute;
+  right: clamp(1rem, 2.6vw, 1.6rem);
+  top: clamp(0.9rem, 2.1vw, 1.4rem);
+  z-index: 3;
+  width: 5.2rem;
+  aspect-ratio: 1;
+  border: 1px solid rgba(185, 31, 27, 0.68);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, transparent 0 48%, rgba(185, 31, 27, 0.16) 49% 54%, transparent 55%),
+    rgba(248, 240, 217, 0.72);
+  color: var(--postal-red);
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.68rem;
+  line-height: 1.05;
+  text-align: center;
+  transform: rotate(-8deg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 180ms var(--ease);
+}
+
+.archive-stamp-trigger span {
+  display: block;
+  max-width: 3.4rem;
+  margin: auto;
+}
+
+.archive-stamp-trigger:hover {
+  transform: translateY(-1px) rotate(-8deg);
+}
+
+.postcard.is-flipped.is-ready-to-stamp:not(.is-archived) .archive-stamp-trigger {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.archive-stamp-trigger.stamp-pressed {
+  transform: translateY(3px) scale(0.94) rotate(-8deg);
+}
+
+.archive-stamp-trigger:disabled {
+  cursor: default;
+  opacity: 0.38;
+}
+
+.archive-imprint {
+  position: absolute;
+  right: clamp(1.1rem, 2.8vw, 1.8rem);
+  top: clamp(1rem, 2.2vw, 1.5rem);
+  z-index: 4;
+  width: 5.4rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(185, 31, 27, 0.72);
+  border-radius: 50%;
+  color: rgba(185, 31, 27, 0.72);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.76rem;
+  line-height: 1.05;
+  text-align: center;
+  opacity: 0;
+  transform: rotate(-12deg);
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  filter: blur(0.25px);
+}
+
+.archive-imprint::before,
+.archive-imprint::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.46;
+}
+
+.archive-imprint::after {
+  inset: auto 0.5rem 38% auto;
+  width: 2.3rem;
+  height: 1.2rem;
+  border: 0;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  border-radius: 0;
+  transform: rotate(8deg);
+}
+
+.postcard.is-archived .archive-imprint {
+  opacity: 1;
+}
+
+.postcard.is-archived .archive-stamp-trigger {
+  opacity: 0.18;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.postcard.is-flipped.is-ready-to-stamp:not(.is-archived) .postcard-back .archive-stamp-trigger {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.postcard-topline {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  font-family: "Courier New", Courier, monospace;
+  color: var(--postal-blue);
+  letter-spacing: 0.02em;
+}
+
+.postcard-topline i {
+  width: 3.4rem;
+  height: 2.6rem;
+  display: block;
+  border: 1px solid rgba(31, 26, 22, 0.25);
+  background:
+    radial-gradient(circle at 50% 50%, transparent 38%, rgba(185, 31, 27, 0.46) 39%, rgba(185, 31, 27, 0.46) 42%, transparent 43%),
+    #efe0bc;
+}
+
+.postcard-writing {
+  padding: 1rem 1rem 0 0;
+  border-right: 1px solid rgba(39, 106, 143, 0.62);
+}
+
+.postcard-writing label {
+  display: grid;
+  gap: 0.38rem;
+  margin-bottom: 0.8rem;
+  color: var(--ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+}
+
+.postcard-writing textarea {
+  width: 100%;
+  resize: none;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #20312f;
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: clamp(0.9rem, 1.4vw, 1.04rem);
+  line-height: 1.55;
+  outline: none;
+}
+
+.postcard-writing textarea:focus {
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 0 0 1px rgba(39, 106, 143, 0.3);
+}
+
+.postcard-address {
+  display: grid;
+  align-content: center;
+  gap: 1.2rem;
+  padding-left: 1rem;
+}
+
+.postcard-address span {
+  display: block;
+  border-bottom: 1px solid rgba(39, 106, 143, 0.42);
+}
+
+.past-collection {
+  min-height: 100dvh;
+  padding: clamp(2rem, 6vw, 5rem);
+  background:
+    linear-gradient(90deg, rgba(39, 106, 143, 0.12), transparent 28%),
+    #efe9d7;
+  color: var(--ink);
+}
+
+.past-heading {
+  max-width: 52ch;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.past-heading h2 {
+  margin: 0 0 0.55rem;
+  font-family: Helvetica, Arial, system-ui, sans-serif;
+  font-size: clamp(2rem, 5vw, 4.8rem);
+  line-height: 0.94;
+  letter-spacing: 0;
+}
+
+.past-heading p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 430px));
+  justify-content: start;
+  gap: clamp(1.4rem, 4vw, 3rem);
+}
+
+.date-collage {
+  position: relative;
+  aspect-ratio: 1.46 / 1;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 190ms var(--ease);
+}
+
+.date-collage:hover,
+.date-collage:focus-visible {
+  transform: translateY(-4px) rotate(-0.5deg);
+  outline: none;
+}
+
+.date-postcard-shell {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: block;
+  background: #f7f0de;
+  border: 9px solid #fbf6ea;
+  box-shadow: 0 11px 9px rgba(31, 26, 22, 0.18);
+  clip-path: polygon(2% 0, 100% 2%, 97% 100%, 0 96%);
+}
+
+.date-collage:nth-child(2n) .date-postcard-shell {
+  rotate: 1.5deg;
+}
+
+.date-collage:nth-child(2n + 1) .date-postcard-shell {
+  rotate: -1.2deg;
+}
+
+.date-piece {
+  position: absolute;
+  overflow: hidden;
+  background: #ded6c8;
+  box-shadow: 0 4px 5px rgba(31, 26, 22, 0.1);
+}
+
+.date-piece.one {
+  left: 0;
+  top: 0;
+  width: 54%;
+  height: 58%;
+  clip-path: polygon(0 0, 100% 0, 94% 100%, 0 94%);
+  background:
+    linear-gradient(155deg, transparent 0 41%, rgba(31, 26, 22, 0.42) 42% 58%, transparent 59%),
+    linear-gradient(180deg, #accbc3 0 55%, #d9d0b8 56% 100%);
+}
+
+.date-piece.two {
+  right: 0;
+  top: 0;
+  width: 48%;
+  height: 46%;
+  background:
+    repeating-linear-gradient(176deg, transparent 0 16px, rgba(32, 49, 47, 0.24) 17px 18px),
+    #efe5cf;
+}
+
+.date-piece.three {
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  height: 43%;
+  background: #87c5d6;
+  clip-path: polygon(0 0, 100% 7%, 92% 100%, 0 100%);
+}
+
+.date-piece.four {
+  right: 0;
+  bottom: 0;
+  width: 63%;
+  height: 55%;
+  clip-path: polygon(5% 8%, 100% 0, 100% 100%, 0 94%);
+  background:
+    radial-gradient(circle at 32% 42%, rgba(31, 26, 22, 0.28) 0 8%, transparent 9%),
+    linear-gradient(172deg, #8fc6d5 0 58%, #ead9bd 59% 100%);
+}
+
+.date-piece.has-replacement-image {
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.1), rgba(31, 26, 22, 0.08)),
+    var(--replacement-image) center / cover,
+    linear-gradient(158deg, #a9c7c0 0 48%, #d7ceb7 49% 100%);
+}
+
+.writing-piece {
+  padding: 1rem;
+  color: rgba(32, 49, 47, 0.74);
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: clamp(0.72rem, 1.5vw, 0.9rem);
+  line-height: 1.5;
+}
+
+.writing-piece span,
+.writing-piece i {
+  display: block;
+  font-style: normal;
+  transform: rotate(-6deg);
+}
+
+.type-piece {
+  display: grid;
+  place-items: center;
+  background: #11100e;
+  color: #fff8e8;
+  font-family: "Arial Black", Helvetica, Arial, sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  letter-spacing: 0;
+}
+
+.strip-piece {
+  background: var(--postal-blue);
+}
+
+.date-card-tape {
+  position: absolute;
+  width: 5.6rem;
+  height: 1.35rem;
+  background: rgba(236, 196, 39, 0.75);
+  z-index: 3;
+  clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 91%);
+}
+
+.date-card-tape.tape-a {
+  left: 43%;
+  top: 42%;
+  rotate: -7deg;
+}
+
+.date-card-tape.tape-b {
+  right: 9%;
+  top: 10%;
+  rotate: 8deg;
+  width: 4.2rem;
+  height: 1.05rem;
+  opacity: 0.72;
+}
+
+.date-card-stamp {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  z-index: 4;
+  width: 2.6rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(185, 31, 27, 0.58);
+  color: var(--postal-red);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.8rem;
+  rotate: 3deg;
+}
+
+.collage-date {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.7rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  z-index: 5;
+}
+
+.collection-grid {
+  position: relative;
+  display: block;
+  min-height: min(68vh, 620px);
+  max-width: 980px;
+  margin-inline: auto;
+  perspective: 1200px;
+}
+
+.archive-postcard {
+  position: absolute;
+  top: clamp(2rem, 8vh, 5rem);
+  left: 50%;
+  width: min(78vw, 390px);
+  aspect-ratio: 1.46 / 1;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transform:
+    translateX(calc(-50% + var(--spread, 0px)))
+    translateY(var(--lift))
+    rotate(var(--fan));
+  transform-origin: 50% 100%;
+  transition:
+    transform 360ms var(--ease),
+    z-index 1ms linear,
+    filter 240ms var(--ease);
+  text-align: left;
+}
+
+.archive-postcard:nth-child(1) {
+  --spread: -260px;
+  z-index: 4;
+}
+
+.archive-postcard:nth-child(2) {
+  --spread: -90px;
+  z-index: 5;
+}
+
+.archive-postcard:nth-child(3) {
+  --spread: 90px;
+  z-index: 6;
+}
+
+.archive-postcard:nth-child(4) {
+  --spread: 260px;
+  z-index: 3;
+}
+
+.archive-postcard:nth-child(n + 5) {
+  --spread: 0px;
+  top: clamp(16rem, 42vh, 22rem);
+}
+
+.archive-postcard:hover,
+.archive-postcard:focus-visible {
+  transform:
+    translateX(calc(-50% + var(--spread, 0px)))
+    translateY(calc(var(--lift) - 12px))
+    rotate(calc(var(--fan) * 0.72));
+  outline: none;
+}
+
+.archive-postcard.is-open {
+  z-index: 30;
+  transform: translateX(-50%) translateY(-26px) rotate(-1.2deg) scale(1.08);
+}
+
+.archive-postcard-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: block;
+  padding: 0.65rem;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(141, 91, 51, 0.12), transparent 18%),
+    radial-gradient(circle at 86% 80%, rgba(39, 106, 143, 0.1), transparent 22%),
+    repeating-linear-gradient(91deg, rgba(70, 53, 35, 0.045) 0 1px, transparent 1px 8px),
+    #f0e4cc;
+  border: 8px solid rgba(250, 244, 226, 0.88);
+  clip-path: polygon(1% 0, 99% 2%, 100% 95%, 96% 100%, 2% 98%, 0 5%);
+  box-shadow:
+    0 14px 12px rgba(31, 26, 22, 0.22),
+    inset 0 0 26px rgba(72, 55, 36, 0.14);
+}
+
+.archive-postcard-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.24;
+  background-image: radial-gradient(rgba(31, 26, 22, 0.25) 0.8px, transparent 0.9px);
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.archive-landscape,
+.archive-writing-fragment,
+.archive-tape,
+.archive-postmark,
+.archive-date {
+  position: absolute;
+  display: block;
+}
+
+.archive-landscape {
+  overflow: hidden;
+  box-shadow: 0 7px 7px rgba(31, 26, 22, 0.14);
+  filter: saturate(0.72) contrast(0.92) sepia(0.12);
+}
+
+.archive-landscape::before,
+.archive-landscape::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.archive-landscape::before {
+  background:
+    radial-gradient(circle at 72% 24%, rgba(255, 250, 230, 0.3), transparent 16%),
+    linear-gradient(162deg, transparent 0 42%, rgba(31, 26, 22, 0.5) 43% 58%, transparent 59%),
+    linear-gradient(180deg, #8fc1c8 0 54%, #ddbf88 55% 100%);
+}
+
+.archive-landscape::after {
+  border: 1px solid rgba(255, 250, 230, 0.58);
+  box-shadow: inset 0 0 22px rgba(31, 26, 22, 0.18);
+}
+
+.archive-landscape-a {
+  left: 4%;
+  top: 9%;
+  width: 61%;
+  height: 54%;
+  clip-path: polygon(0 0, 98% 4%, 100% 94%, 2% 100%);
+}
+
+.archive-landscape-b {
+  right: 5%;
+  bottom: 9%;
+  width: 60%;
+  height: 52%;
+  transform: rotate(2.5deg);
+  clip-path: polygon(3% 5%, 100% 0, 96% 100%, 0 93%);
+}
+
+.archive-writing-fragment {
+  left: 10%;
+  bottom: 12%;
+  width: 48%;
+  height: 40%;
+  padding: 0.8rem;
+  background:
+    repeating-linear-gradient(176deg, transparent 0 17px, rgba(32, 49, 47, 0.2) 18px 19px),
+    #efe3c9;
+  color: rgba(32, 49, 47, 0.76);
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  clip-path: polygon(4% 0, 100% 5%, 94% 100%, 0 92%);
+  box-shadow: 0 6px 6px rgba(31, 26, 22, 0.12);
+}
+
+.archive-writing-fragment i,
+.archive-writing-fragment span {
+  display: block;
+  font-style: normal;
+  transform: rotate(-5deg);
+}
+
+.mode-front-front .archive-writing-fragment {
+  display: none;
+}
+
+.mode-front-front .archive-landscape-a {
+  width: 74%;
+  height: 56%;
+}
+
+.mode-front-front .archive-landscape-b {
+  width: 65%;
+  height: 47%;
+}
+
+.archive-tape {
+  z-index: 7;
+  width: 5.4rem;
+  height: 1.25rem;
+  background:
+    radial-gradient(rgba(86, 61, 22, 0.22) 0.7px, transparent 0.9px),
+    linear-gradient(90deg, rgba(255, 242, 143, 0.6), rgba(220, 171, 44, 0.42));
+  background-size: 4px 4px, 100% 100%;
+  opacity: 0.78;
+  clip-path: polygon(7% 0, 100% 7%, 94% 100%, 0 91%);
+  mix-blend-mode: multiply;
+}
+
+.archive-tape.tape-a {
+  left: 42%;
+  top: 47%;
+  transform: rotate(-8deg);
+}
+
+.archive-tape.tape-b {
+  right: 12%;
+  top: 12%;
+  width: 4.2rem;
+  transform: rotate(7deg);
+}
+
+.archive-postmark {
+  right: 9%;
+  top: 13%;
+  width: 4rem;
+  aspect-ratio: 1;
+  border: 2px solid rgba(130, 54, 43, 0.54);
+  border-radius: 50%;
+  color: rgba(130, 54, 43, 0.6);
+  mix-blend-mode: multiply;
+  filter: blur(0.25px);
+  transform: rotate(-12deg);
+}
+
+.archive-postmark::before,
+.archive-postmark::after {
+  content: "";
+  position: absolute;
+}
+
+.archive-postmark::before {
+  inset: 9px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.archive-postmark::after {
+  right: -1rem;
+  top: 42%;
+  width: 2.3rem;
+  height: 1rem;
+  border-top: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+}
+
+.archive-date {
+  left: 1rem;
+  bottom: 0.78rem;
+  z-index: 9;
+  padding: 0.18rem 0.35rem;
+  background: rgba(244, 232, 205, 0.78);
+  color: var(--ink-soft);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.76rem;
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.archive-postcard.is-open .archive-date {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes settle-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) rotate(-6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-3deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .scrapbook-hero {
+    min-height: auto;
+    padding-bottom: 3rem;
+  }
+
+  .hero-tools {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .paper-base-a {
+    left: 5vw;
+    width: 90vw;
+    height: 88%;
+  }
+
+  .paper-base-b,
+  .photo-shard-a,
+  .circle-shard,
+  .color-shard-a {
+    display: none;
+  }
+
+  .postcard-stage {
+    grid-template-columns: minmax(280px, 440px);
+    min-height: auto;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .postcard-a,
+  .postcard-b {
+    transform: rotate(0deg);
+  }
+
+  .postcard {
+    aspect-ratio: 1.18 / 1;
+  }
+
+  .postcard-back {
+    grid-template-columns: 1fr;
+  }
+
+  .postcard-writing {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .postcard-address {
+    display: none;
+  }
+
+  .stamp-shard {
+    right: 5vw;
+    top: 18vh;
+  }
+
+  .photo-shard-b {
+    left: 52vw;
+    top: 16vh;
+    width: 38vw;
+  }
+
+  .paper-shard-a {
+    right: 4vw;
+    top: 30vh;
+    width: 36vw;
+  }
+
+  .type-shard-a {
+    left: 5vw;
+    top: 38vh;
+    width: 18vw;
+  }
+
+  .uploaded-piece {
+    width: 42vw;
+    left: 8vw;
+    top: 32vh;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-height: auto;
+    gap: 1rem;
+  }
+
+  .archive-postcard,
+  .date-collage {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: min(100%, 440px);
+    transform: rotate(var(--fan));
+    margin-inline: auto;
+  }
+
+  .archive-postcard:hover,
+  .archive-postcard:focus-visible,
+  .archive-postcard.is-open {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
