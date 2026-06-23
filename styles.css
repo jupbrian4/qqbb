@@ -1838,6 +1838,496 @@ button {
   transform: translateY(0);
 }
 
+.photo-frame.has-local-photo {
+  background:
+    linear-gradient(rgba(244, 232, 205, 0.12), rgba(31, 26, 22, 0.14)),
+    var(--photo-image) center / cover,
+    linear-gradient(180deg, var(--accent-a), #dec184 54%, var(--accent-c));
+  filter: saturate(0.66) contrast(0.88) sepia(0.16) brightness(1.03);
+}
+
+.photo-frame.has-local-photo::before {
+  background:
+    radial-gradient(circle at 72% 28%, rgba(255, 249, 225, 0.26), transparent 16%),
+    linear-gradient(160deg, rgba(255, 246, 220, 0.18), transparent 54%, rgba(31, 26, 22, 0.22)),
+    radial-gradient(rgba(31, 26, 22, 0.22) 0.7px, transparent 0.8px);
+  background-size: 100% 100%, 100% 100%, 4px 4px;
+  mix-blend-mode: soft-light;
+}
+
+.ransom-note-phrase {
+  position: absolute;
+  z-index: 13;
+  left: clamp(1rem, 55vw, 58vw);
+  top: clamp(7rem, 16vh, 11rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.24rem 0.34rem;
+  max-width: min(28vw, 18rem);
+  pointer-events: none;
+  transform: rotate(-2deg);
+}
+
+.ransom-note-phrase span {
+  display: inline-block;
+  padding: 0.1rem 0.32rem 0.16rem;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.62), rgba(235, 223, 194, 0.86)),
+    #f7efe0;
+  color: #1c1713;
+  font-family: Helvetica, Arial, system-ui, sans-serif;
+  font-size: clamp(0.72rem, 1.4vw, 1.08rem);
+  line-height: 1;
+  font-weight: 700;
+  box-shadow: 0 3px 4px rgba(31, 26, 22, 0.13);
+  transform: translateY(var(--word-y)) rotate(var(--word-r));
+  clip-path: polygon(2% 0, 100% 5%, 97% 100%, 0 92%);
+}
+
+.ransom-note-phrase span:nth-child(2n) {
+  font-family: "Courier New", Courier, monospace;
+  background: #f1dfbf;
+  color: #25344f;
+}
+
+.ransom-note-phrase span:nth-child(3n) {
+  background: #b91f1b;
+  color: #fff7e2;
+}
+
+.ransom-note-phrase.is-refreshed span {
+  animation: ransom-refresh 280ms var(--ease) both;
+}
+
+.postcard-front-meta {
+  display: none;
+}
+
+.answer-cover {
+  position: absolute;
+  z-index: 8;
+  left: clamp(0.8rem, 2vw, 1.1rem);
+  top: clamp(4.2rem, 9vw, 5.4rem);
+  width: min(57%, 15rem);
+  height: min(58%, 11.5rem);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.36), transparent 22%),
+    repeating-linear-gradient(96deg, rgba(75, 55, 35, 0.06) 0 1px, transparent 1px 9px),
+    #eadfc4;
+  color: rgba(31, 26, 22, 0.72);
+  box-shadow: 0 8px 7px rgba(31, 26, 22, 0.16);
+  clip-path: polygon(3% 0, 100% 4%, 96% 96%, 54% 100%, 48% 96%, 0 92%);
+  opacity: 0;
+  transform: translateY(10px) rotate(-4deg);
+  pointer-events: none;
+  transition: opacity 240ms var(--ease), transform 240ms var(--ease);
+}
+
+.answer-cover span {
+  max-width: 11rem;
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+  line-height: 1.55;
+  text-align: center;
+}
+
+.answer-cover i,
+.answer-cover::after {
+  position: absolute;
+  content: "";
+  display: block;
+}
+
+.answer-cover i {
+  left: 50%;
+  top: -0.65rem;
+  width: 5.4rem;
+  height: 1.22rem;
+  background:
+    radial-gradient(rgba(86, 61, 22, 0.22) 0.7px, transparent 0.9px),
+    linear-gradient(90deg, rgba(255, 242, 143, 0.58), rgba(220, 171, 44, 0.38));
+  background-size: 4px 4px, 100% 100%;
+  mix-blend-mode: multiply;
+  transform: translateX(-50%) rotate(6deg);
+  clip-path: polygon(7% 0, 100% 8%, 94% 100%, 0 91%);
+}
+
+.answer-cover::after {
+  inset: 0;
+  opacity: 0.18;
+  background-image: radial-gradient(rgba(31, 26, 22, 0.24) 0.8px, transparent 0.9px);
+  background-size: 5px 5px;
+  mix-blend-mode: multiply;
+}
+
+.postcard.has-covered-answer .answer-cover {
+  opacity: 1;
+  transform: translateY(0) rotate(-4deg);
+}
+
+.postcard-writing textarea:read-only {
+  color: rgba(32, 49, 47, 0.72);
+  cursor: default;
+  filter: blur(0.08px);
+}
+
+.postcard-stage.is-ready-reveal::after,
+.postcard-stage.is-revealed::after {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(-2.4rem, -3vw, -1.3rem);
+  z-index: 16;
+  width: max-content;
+  max-width: min(86vw, 28rem);
+  padding: 0.52rem 0.85rem;
+  background: #f2e5c9;
+  color: rgba(31, 26, 22, 0.78);
+  box-shadow: 0 5px 5px rgba(31, 26, 22, 0.12);
+  transform: translateX(-50%) rotate(-1.4deg);
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: 0.9rem;
+  text-align: center;
+  clip-path: polygon(1% 0, 100% 7%, 96% 100%, 0 92%);
+}
+
+.postcard-stage.is-ready-reveal::after {
+  content: "两张邮戳已经齐了，可以轻轻揭开纸封";
+}
+
+.postcard-stage.is-revealed::after {
+  content: "今天的两张明信片已经打开";
+}
+
+.archive-toolbelt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.archive-toolbelt button,
+.design-preview-panel button {
+  min-height: 2.45rem;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgba(31, 26, 22, 0.14);
+  transition: transform 180ms var(--ease), background 180ms var(--ease), color 180ms var(--ease);
+}
+
+.archive-toolbelt button {
+  padding: 0.48rem 0.78rem;
+  background: #f4ead2;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.82rem;
+  clip-path: polygon(3% 0, 100% 6%, 96% 100%, 0 93%);
+}
+
+.archive-toolbelt button:hover,
+.archive-toolbelt button:focus-visible,
+.design-preview-panel button:hover,
+.design-preview-panel button:focus-visible {
+  transform: translateY(-1px);
+  outline: 2px solid rgba(39, 106, 143, 0.58);
+  outline-offset: 3px;
+}
+
+.archive-home {
+  position: relative;
+  padding-left: 2.4rem !important;
+}
+
+.archive-home::before {
+  content: "";
+  position: absolute;
+  left: 0.48rem;
+  top: 50%;
+  width: 1.35rem;
+  height: 1.6rem;
+  background: url("public/collage-optimized/overlay/Edward Penfield/HTC_Heritage Library_Edward PenfieldElement 1.webp") center / contain no-repeat;
+  filter: saturate(0.72) contrast(0.92) sepia(0.14);
+  transform: translateY(-50%) rotate(-4deg);
+}
+
+.archive-export {
+  background: #b91f1b !important;
+  color: #fff8e8 !important;
+}
+
+.archive-empty-state {
+  position: relative;
+  min-height: min(66vh, 560px);
+  background:
+    radial-gradient(circle at 16% 24%, rgba(39, 106, 143, 0.08), transparent 18rem),
+    radial-gradient(circle at 76% 68%, rgba(185, 31, 27, 0.06), transparent 17rem),
+    repeating-linear-gradient(92deg, rgba(70, 53, 35, 0.04) 0 1px, transparent 1px 9px),
+    #efe4cd;
+  border: 1px solid rgba(31, 26, 22, 0.12);
+  box-shadow: inset 0 0 44px rgba(72, 55, 36, 0.08);
+  clip-path: polygon(1% 0, 100% 2%, 98% 100%, 0 97%);
+}
+
+.empty-postcard-outline {
+  position: absolute;
+  width: min(48vw, 360px);
+  aspect-ratio: 1.46 / 1;
+  border: 2px dashed rgba(31, 26, 22, 0.18);
+  background: rgba(255, 248, 226, 0.28);
+  box-shadow: inset 0 0 18px rgba(31, 26, 22, 0.04);
+}
+
+.empty-one {
+  left: 16%;
+  top: 18%;
+  transform: rotate(-8deg);
+}
+
+.empty-two {
+  right: 12%;
+  bottom: 19%;
+  transform: rotate(7deg);
+}
+
+.empty-note {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  padding: 0.5rem 0.72rem;
+  background: #f5ead1;
+  color: rgba(31, 26, 22, 0.72);
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  box-shadow: 0 5px 5px rgba(31, 26, 22, 0.1);
+}
+
+.archive-postcard:nth-child(1) {
+  --spread: -340px;
+  z-index: 4;
+}
+
+.archive-postcard:nth-child(2) {
+  --spread: -172px;
+  z-index: 5;
+}
+
+.archive-postcard:nth-child(3) {
+  --spread: 0px;
+  z-index: 6;
+}
+
+.archive-postcard:nth-child(4) {
+  --spread: 172px;
+  z-index: 5;
+}
+
+.archive-postcard:nth-child(5) {
+  --spread: 340px;
+  z-index: 4;
+}
+
+.archive-postcard:nth-child(n + 6) {
+  display: none;
+}
+
+.archive-landscape-a::before {
+  background:
+    linear-gradient(rgba(244, 232, 205, 0.13), rgba(31, 26, 22, 0.16)),
+    var(--archive-img-a) center / cover,
+    linear-gradient(180deg, #8fc1c8 0 54%, #ddbf88 55% 100%);
+}
+
+.archive-landscape-b::before {
+  background:
+    linear-gradient(rgba(244, 232, 205, 0.14), rgba(31, 26, 22, 0.14)),
+    var(--archive-img-b) center / cover,
+    linear-gradient(180deg, #8fc1c8 0 54%, #ddbf88 55% 100%);
+}
+
+.archive-detail-panel {
+  position: relative;
+  z-index: 40;
+  max-width: 780px;
+  margin: clamp(1rem, 4vw, 3rem) auto 0;
+}
+
+.archive-detail-card {
+  position: relative;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  background:
+    radial-gradient(circle at 86% 16%, rgba(39, 106, 143, 0.08), transparent 16%),
+    repeating-linear-gradient(92deg, rgba(75, 55, 35, 0.055) 0 1px, transparent 1px 9px),
+    #efe4cb;
+  color: var(--ink);
+  box-shadow: 0 15px 12px rgba(31, 26, 22, 0.18);
+  clip-path: polygon(1% 0, 100% 2%, 98% 96%, 93% 100%, 2% 98%, 0 5%);
+}
+
+.archive-detail-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  border: 0;
+  padding: 0.42rem 0.65rem;
+  background: #f5ead1;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+  box-shadow: 0 3px 0 rgba(31, 26, 22, 0.13);
+  clip-path: polygon(3% 0, 100% 6%, 96% 100%, 0 93%);
+}
+
+.detail-date {
+  width: max-content;
+  margin: 0 0 1rem;
+  padding: 0.22rem 0.5rem;
+  background: rgba(185, 31, 27, 0.9);
+  color: #fff8e8;
+  font-family: "Courier New", Courier, monospace;
+  transform: rotate(-2deg);
+}
+
+.detail-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 4vw, 2.2rem);
+}
+
+.detail-columns section {
+  min-width: 0;
+  padding: 1rem;
+  background:
+    repeating-linear-gradient(176deg, transparent 0 21px, rgba(39, 106, 143, 0.2) 22px 23px),
+    rgba(255, 248, 226, 0.42);
+}
+
+.detail-columns h3 {
+  margin: 0 0 0.6rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.86rem;
+  color: var(--postal-blue);
+}
+
+.detail-columns p {
+  margin: 0 0 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.ink-answer {
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  color: #20312f !important;
+}
+
+.detail-postmark {
+  position: absolute;
+  right: 1.6rem;
+  bottom: 1rem;
+  width: 4.8rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid rgba(130, 54, 43, 0.54);
+  border-radius: 50%;
+  color: rgba(130, 54, 43, 0.62);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.7rem;
+  text-align: center;
+  mix-blend-mode: multiply;
+  transform: rotate(-12deg);
+}
+
+[data-archive-state="export"] .archive-export {
+  outline: 3px solid rgba(185, 31, 27, 0.28);
+  outline-offset: 5px;
+  transform: rotate(-2deg);
+}
+
+[data-archive-state="export"] .collection-grid::after {
+  content: "导出会先生成一份本地归档文件，下一阶段再接 PDF 或云端备份。";
+  position: absolute;
+  right: min(8vw, 4rem);
+  bottom: min(8vh, 3rem);
+  width: min(72vw, 22rem);
+  padding: 0.8rem 1rem;
+  background: #f4ead2;
+  color: rgba(31, 26, 22, 0.78);
+  box-shadow: 0 7px 7px rgba(31, 26, 22, 0.14);
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  line-height: 1.55;
+  transform: rotate(1.8deg);
+  clip-path: polygon(2% 0, 100% 5%, 96% 100%, 0 93%);
+}
+
+.design-preview-panel {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 90;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.34rem;
+  width: min(88vw, 25rem);
+  max-height: min(72vh, 31rem);
+  overflow: auto;
+  padding: 0.75rem;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.34), transparent 22%),
+    repeating-linear-gradient(96deg, rgba(75, 55, 35, 0.055) 0 1px, transparent 1px 9px),
+    rgba(242, 229, 201, 0.96);
+  border: 1px solid rgba(31, 26, 22, 0.22);
+  box-shadow: 0 12px 14px rgba(31, 26, 22, 0.18);
+  clip-path: polygon(1% 0, 100% 2%, 98% 100%, 0 96%);
+}
+
+.design-preview-panel strong {
+  grid-column: 1 / -1;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.78rem;
+  color: rgba(31, 26, 22, 0.74);
+}
+
+.design-preview-panel button {
+  padding: 0.36rem 0.42rem;
+  background: #f8efda;
+  font-family: MingLiU, PMingLiU, "Times New Roman", serif;
+  font-size: 0.78rem;
+  line-height: 1.15;
+  clip-path: polygon(3% 0, 100% 6%, 96% 100%, 0 93%);
+}
+
+.design-preview-panel button.is-active {
+  background: var(--postal-red);
+  color: #fff8e8;
+}
+
+.preview-focus-postcard .retro-collage-element {
+  opacity: calc(var(--o) * 0.5);
+}
+
+.preview-focus-postcard .postcard-stage {
+  transform: translateY(1rem) scale(1.04);
+}
+
+.preview-lucky-ransom .ransom-note-phrase {
+  outline: 1px dashed rgba(185, 31, 27, 0.52);
+  outline-offset: 0.45rem;
+}
+
+@keyframes ransom-refresh {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--word-y) + 8px)) rotate(calc(var(--word-r) - 4deg));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(var(--word-y)) rotate(var(--word-r));
+  }
+}
+
 @keyframes settle-in {
   from {
     opacity: 0;
@@ -1897,6 +2387,12 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .answer-cover {
+    width: calc(100% - 2rem);
+    height: 48%;
+    top: 42%;
+  }
+
   .postcard-writing {
     border-right: 0;
     padding-right: 0;
@@ -1952,10 +2448,47 @@ button {
     margin-inline: auto;
   }
 
+  .archive-postcard:nth-child(n + 4) {
+    display: none;
+  }
+
   .archive-postcard:hover,
   .archive-postcard:focus-visible,
   .archive-postcard.is-open {
     transform: translateY(-10px) rotate(-1deg);
+  }
+
+  .ransom-note-phrase {
+    left: 48vw;
+    top: 9rem;
+    max-width: 45vw;
+  }
+
+  .detail-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-detail-close {
+    position: relative;
+    right: auto;
+    top: auto;
+    margin-bottom: 0.8rem;
+  }
+
+  .design-preview-panel {
+    left: 0.75rem;
+    right: auto;
+    bottom: 0.75rem;
+    width: min(54vw, 13rem);
+    max-height: 40vh;
+    grid-template-columns: 1fr;
+    padding: 0.55rem;
+  }
+
+  .design-preview-panel button {
+    min-height: 2rem;
+    padding: 0.26rem 0.34rem;
+    font-size: 0.72rem;
   }
 }
 

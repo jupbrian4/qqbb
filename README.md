@@ -15,6 +15,14 @@ Then open:
 http://127.0.0.1:8877/
 ```
 
+Design preview mode:
+
+```text
+http://127.0.0.1:8877/?preview=1
+```
+
+Preview mode uses mocked visual states and does not write archive data.
+
 ## Test
 
 ```bash

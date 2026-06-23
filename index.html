@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>每日明信片</title>
-    <link rel="stylesheet" href="./styles.css?v=20260622-retro-collage-6" />
+    <link rel="stylesheet" href="./styles.css?v=20260623-preview-1" />
   </head>
   <body>
     <main class="app-shell">
@@ -34,7 +34,7 @@
         <div class="replace-panel" data-replace-panel hidden>
           <label for="replace-search">输入一个主题</label>
           <div class="replace-row">
-            <input id="replace-search" type="search" placeholder="雪山、海边、森林、东京夜晚" data-replace-input />
+            <input id="replace-search" type="search" aria-label="输入一个替换主题" data-replace-input />
             <button type="button" data-retry-button>换一组</button>
             <button type="button" data-apply-button>确定</button>
           </div>
@@ -42,16 +42,13 @@
         </div>
 
         <div class="scrap-layer" data-collage-layer aria-label="今日拼贴背景"></div>
+        <div class="ransom-note-phrase" data-ransom-note aria-label="今日剪贴短句"></div>
 
         <section class="postcard-stage" aria-label="今日明信片">
           <article class="postcard postcard-a" data-postcard="a" tabindex="0" aria-label="第一张明信片，点击翻面">
             <div class="postcard-inner">
               <div class="postcard-face postcard-front">
                 <div class="photo-frame photo-a" role="img" data-replaceable="postcard-front-a" data-search-hint="雪山" aria-label="风景明信片正面"></div>
-                <div class="postcard-front-meta">
-                  <span>风景面 A</span>
-                  <small>点击书写</small>
-                </div>
               </div>
               <div class="postcard-face postcard-back">
                 <div class="postcard-topline">
@@ -73,22 +70,22 @@
                   <span></span>
                   <span></span>
                 </div>
+                <div class="answer-cover" data-answer-cover aria-hidden="true">
+                  <span>等两张明信片都盖章后打开</span>
+                  <i></i>
+                </div>
+                <button class="archive-stamp-trigger" type="button" data-archive-postcard="a" aria-label="盖邮戳并归档第一张明信片">
+                  <span>PRESS HERE</span>
+                </button>
+                <span class="archive-imprint" aria-hidden="true">ARCHIVED<br />06.22</span>
               </div>
             </div>
-            <button class="archive-stamp-trigger" type="button" data-archive-postcard="a" aria-label="盖邮戳并归档第一张明信片">
-              <span>PRESS HERE</span>
-            </button>
-            <span class="archive-imprint" aria-hidden="true">ARCHIVED<br />06.22</span>
           </article>
 
           <article class="postcard postcard-b" data-postcard="b" tabindex="0" aria-label="第二张明信片，点击翻面">
             <div class="postcard-inner">
               <div class="postcard-face postcard-front">
                 <div class="photo-frame photo-b" role="img" data-replaceable="postcard-front-b" data-search-hint="海边" aria-label="风景明信片正面"></div>
-                <div class="postcard-front-meta">
-                  <span>风景面 B</span>
-                  <small>点击书写</small>
-                </div>
               </div>
               <div class="postcard-face postcard-back">
                 <div class="postcard-topline">
@@ -110,12 +107,16 @@
                   <span></span>
                   <span></span>
                 </div>
+                <div class="answer-cover" data-answer-cover aria-hidden="true">
+                  <span>等两张明信片都盖章后打开</span>
+                  <i></i>
+                </div>
+                <button class="archive-stamp-trigger" type="button" data-archive-postcard="b" aria-label="盖邮戳并归档第二张明信片">
+                  <span>PRESS HERE</span>
+                </button>
+                <span class="archive-imprint" aria-hidden="true">ARCHIVED<br />06.22</span>
               </div>
             </div>
-            <button class="archive-stamp-trigger" type="button" data-archive-postcard="b" aria-label="盖邮戳并归档第二张明信片">
-              <span>PRESS HERE</span>
-            </button>
-            <span class="archive-imprint" aria-hidden="true">ARCHIVED<br />06.22</span>
           </article>
         </section>
       </section>
@@ -123,12 +124,18 @@
       <section class="past-collection" id="past-collection" data-past-section hidden>
         <div class="past-heading">
           <h2>查看过去</h2>
-          <p>像从桌面上抽出一张旧明信片。选中后再看日期和内容。</p>
+          <div class="archive-toolbelt" aria-label="归档操作">
+            <button class="archive-home" type="button" data-return-home>回到今天</button>
+            <button class="archive-shuffle" type="button" data-archive-prev>上一叠</button>
+            <button class="archive-shuffle" type="button" data-archive-next>下一叠</button>
+            <button class="archive-export" type="button" data-export-archive>导出归档</button>
+          </div>
         </div>
         <div class="collection-grid" data-collection-grid aria-live="polite"></div>
+        <div class="archive-detail-panel" data-archive-detail hidden></div>
       </section>
     </main>
 
-    <script type="module" src="./src/app.js?v=20260622-retro-collage-6"></script>
+    <script type="module" src="./src/app.js?v=20260623-preview-1"></script>
   </body>
 </html>
